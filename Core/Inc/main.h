@@ -38,12 +38,14 @@ extern "C" {
 #include <stdbool.h>
 
 #include "usart.h"
-
+#include "can.h"
 #include "robot.h"
 #include "flash.h"
 #include "timer.h"
 #include "data_process.h"
 #include "data_holder.h"
+#include "canopen_process.h"
+#include "user_define.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -74,14 +76,7 @@ void USER_UART_IRQHandler(UART_HandleTypeDef *huart);
 #define LED2_Pin GPIO_PIN_15
 #define LED2_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
-#define Debug_Port huart1
-#define Debug_port_Instance USART1
-#define Debug_Hdma hdma_usart1_rx
-#define Transfer_Port huart3
-#define Transfer_Port_Instance USART3
-#define Transfer_Hdma hdma_usart3_rx
 
-#define SYS_MHZ 72
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

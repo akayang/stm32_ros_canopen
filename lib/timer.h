@@ -1,6 +1,3 @@
-#ifndef TIMER_H_
-#define TIMER_H_
-
 /**
  * @file timer.h
  * @brief 
@@ -16,12 +13,16 @@
  * <tr><td>2022-03-01 <td>1.0     <td>YangDing     <td>内容
  * </table>
  */
+#ifndef TIMER_H_
+#define TIMER_H_
+
 #include "main.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+uint32_t getCurrentMicros();
 void delay_us(uint32_t udelay);
 
 #ifdef __cplusplus

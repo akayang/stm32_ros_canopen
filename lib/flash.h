@@ -24,7 +24,6 @@ extern "C" {
 /**
  * @brief user define
  */
-#define FLASH_SAVE_ADDR ((uint32_t)0x800FC00)
 
 void Flash_Write_data(uint32_t Flash_Add, uint16_t temp_data);
 uint16_t Flash_read_data(uint32_t Flash_Add);

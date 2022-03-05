@@ -1,12 +1,12 @@
 --cpu Cortex-M3
 "stm32_canopen\startup_stm32f103xb.o"
+"stm32_canopen\main.o"
 "stm32_canopen\gpio.o"
 "stm32_canopen\can.o"
 "stm32_canopen\dma.o"
+"stm32_canopen\usart.o"
 "stm32_canopen\stm32f1xx_it.o"
 "stm32_canopen\stm32f1xx_hal_msp.o"
-"stm32_canopen\main.o"
-"stm32_canopen\usart.o"
 "stm32_canopen\stm32f1xx_hal_gpio_ex.o"
 "stm32_canopen\stm32f1xx_hal_can.o"
 "stm32_canopen\stm32f1xx_hal.o"
@@ -28,6 +28,7 @@
 "stm32_canopen\flash.o"
 "stm32_canopen\timer.o"
 "stm32_canopen\robot.o"
+"stm32_canopen\canopen_process.o"
 --strict --scatter "stm32_canopen\stm32_canopen.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

@@ -15,6 +15,8 @@
  */
 #include"flash.h"
 
+#define FLASH_SAVE_ADDR ((uint32_t)0x800FC00)
+
 /**
  * @brief 
  * @param  Flash_Add        My Param doc

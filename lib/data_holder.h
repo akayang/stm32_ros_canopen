@@ -22,7 +22,9 @@ extern "C" {
 #include "main.h"
 
 #pragma anon_unions
+#pragma pack(1)
 
+#define WHEEL_NUMBER 2
 #define UserDefine_Rx_Buffer_Size 255
 
 struct Robot_head{
@@ -68,6 +70,11 @@ struct Robot_velocity{
     int16_t v_angular_z; //角速度 左>0 0.01rad/s  100 means 1 rad/s
 };
 
+struct Robot_encoder{
+    int32_t last_value[WHEEL_NUMBER];
+    int32_t now_value[WHEEL_NUMBER];
+};
+
 struct Robot_odom{
     int16_t v_liner_x;      //线速度 前>0 后<0  cm/s
     int16_t v_liner_y;      //差分轮 为0        cm/s
@@ -75,11 +82,6 @@ struct Robot_odom{
     long x;              //里程计坐标x       cm (这里long为4字节，下同)
     long y;              //里程计坐标y       cm
     int16_t yaw;            //里程计航角        0.01rad     100 means 1 rad
-};
-
-struct Robot_pid_data{
-    long input[4];  //各轮子驱动输入值
-    long output[4]; //个轮子输出值
 };
 
 enum RECEIVE_STATE{
@@ -109,6 +111,15 @@ struct Robot_Message{
     };
 };
 
+struct Can_Message{
+    CAN_TxHeaderTypeDef TxHeader;
+    CAN_TxHeaderTypeDef RxHeader;
+    uint8_t TxData[8];
+    uint8_t RxData[8];
+    uint32_t TxMailbox;
+    uint32_t RxMailbox;
+};
+
 class Data_holder{
     public:
         static Data_holder* get(){
@@ -128,8 +139,8 @@ class Data_holder{
         struct  Robot_parameter parameter;
         struct Robot_velocity  velocity;
         struct Robot_odom      odom;
-        struct Robot_pid_data  pid_data;
-
+        struct Robot_encoder   encoder;
+        struct Can_Message  can_message[2];
         float imu_data[9];
     public:
         uint32_t data_length;   //the valid data bytes of uart package

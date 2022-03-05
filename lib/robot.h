@@ -1,5 +1,3 @@
-#ifndef ROBOT_H_
-#define ROBOT_H_
 /**
  * @file robot.h
  * @brief 
@@ -15,6 +13,9 @@
  * <tr><td>2022-03-03 <td>1.0     <td>YangDing     <td>内容
  * </table>
  */
+#ifndef ROBOT_H_
+#define ROBOT_H_
+
 #ifdef __cplusplus
 extern "C" {
 #endif

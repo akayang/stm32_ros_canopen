@@ -33,7 +33,6 @@ Data_holder::Data_holder() {
     memset(&parameter, 0, sizeof(struct Robot_parameter));
     memset(&velocity, 0, sizeof(struct Robot_velocity));
     memset(&odom, 0, sizeof(struct Robot_odom));
-    memset(&pid_data, 0, sizeof(struct Robot_pid_data));
     memset(imu_data, 0, sizeof(imu_data));
 
     parameter.wheel_diameter=150;
@@ -45,9 +44,9 @@ Data_holder::Data_holder() {
     parameter.kd=0;
     parameter.ko=0;
     parameter.cmd_last_time=10;
-    parameter.max_v_liner_x=0;
-    parameter.max_v_liner_y=0;
-    parameter.max_v_angular_z=0;
+    parameter.max_v_liner_x=500;
+    parameter.max_v_liner_y=500;
+    parameter.max_v_angular_z=2000;
     parameter.imu_type=0;
     parameter.motor_ratio=40;
     parameter.model_type=1;
