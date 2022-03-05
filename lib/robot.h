@@ -39,6 +39,10 @@ class Robot{
         void clear_odom();
         void calc_odom();
         void update_velocity();
+        void control_timeout_check();
+    private:
+        uint32_t last_control_time;
+        uint32_t last_odom_time;
 };
 
 #ifdef __cplusplus

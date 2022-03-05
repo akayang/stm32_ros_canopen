@@ -22,8 +22,9 @@
 extern "C" {
 #endif
 
-uint32_t getCurrentMicros();
 void delay_us(uint32_t udelay);
+uint32_t getCurrentMicros();
+void delayMicroseconds(uint32_t us);
 
 #ifdef __cplusplus
 }

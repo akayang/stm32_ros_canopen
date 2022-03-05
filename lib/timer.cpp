@@ -63,34 +63,33 @@ __STATIC_INLINE uint32_t LL_SYSTICK_IsActiveCounterFlag(void)
  */
 uint32_t getCurrentMicros()
 {
- /* Ensure COUNTFLAG is reset by reading SysTick control and status register */
- LL_SYSTICK_IsActiveCounterFlag();           //清除计数器"溢出"标志位
- uint32_t m = HAL_GetTick();
- const uint32_t tms = SysTick->LOAD + 1;
- __IO uint32_t u = tms - SysTick->VAL;
- if (LL_SYSTICK_IsActiveCounterFlag()) {
- m = HAL_GetTick();
- u = tms - SysTick->VAL;
+  /* Ensure COUNTFLAG is reset by reading SysTick control and status register */
+  LL_SYSTICK_IsActiveCounterFlag();           //清除计数器"溢出"标志位
+  uint32_t m = HAL_GetTick();
+  const uint32_t tms = SysTick->LOAD + 1;
+  __IO uint32_t u = tms - SysTick->VAL;
+  if (LL_SYSTICK_IsActiveCounterFlag()) {
+  m = HAL_GetTick();
+  u = tms - SysTick->VAL;
   }
- return (m * 1000 + (u * 1000) / tms);
+  return (m * 1000 + (u * 1000) / tms);
 }
 
 /**
  * @brief 
  * @param  us               My Param doc
  */
-static inline void delayMicroseconds(uint32_t us)
-{
+void delayMicroseconds(uint32_t us) {
   //方法一
   __IO uint32_t currentTicks = SysTick->VAL;
   /* Number of ticks per millisecond */
- const uint32_t tickPerMs = SysTick->LOAD + 1;
+  const uint32_t tickPerMs = SysTick->LOAD + 1;
   /* Number of ticks to count */
- const uint32_t nbTicks = ((us - ((us > 0) ? 1 : 0)) * tickPerMs) / 1000;
+  const uint32_t nbTicks = ((us - ((us > 0) ? 1 : 0)) * tickPerMs) / 1000;
   /* Number of elapsed ticks */
- uint32_t elapsedTicks = 0;
+  uint32_t elapsedTicks = 0;
   __IO uint32_t oldTicks = currentTicks;
- do {
+  do {
     currentTicks = SysTick->VAL;
     elapsedTicks += (oldTicks < currentTicks) ? tickPerMs + oldTicks - currentTicks :
                     oldTicks - currentTicks;

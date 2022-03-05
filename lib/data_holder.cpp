@@ -91,5 +91,3 @@ void Data_holder::save_parameter() {
    HAL_FLASH_Lock();
   }
 }
-    
-

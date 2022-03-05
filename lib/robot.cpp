@@ -98,19 +98,29 @@ void Robot::calc_odom() {
     
 }
 
-void Robot::velocity_control() { 
+void Robot::velocity_control() {
     int16_t vx = min(max(Data_holder::get()->velocity.v_liner_x, -(int16_t(Data_holder::get()->parameter.max_v_liner_x))), int16_t(Data_holder::get()->parameter.max_v_liner_x));
     int16_t vy = min(max(Data_holder::get()->velocity.v_liner_y, -(int16_t(Data_holder::get()->parameter.max_v_liner_y))), int16_t(Data_holder::get()->parameter.max_v_liner_y));
     int16_t vz = min(max(Data_holder::get()->velocity.v_angular_z, -(int16_t(Data_holder::get()->parameter.max_v_angular_z))), int16_t(Data_holder::get()->parameter.max_v_angular_z));
     double robot_speed[3]={vx/100.0, vy/100.0, vz/100.0};	
     int32_t motor_speed[2];
-    motor_speed[0] = (-robot_speed[0] + robot_speed[2] * Data_holder::get()->parameter.wheel_track * 0.0005)  * 60 * Data_holder::get()->parameter.motor_ratio / PAI \
+    motor_speed[0] = (robot_speed[0] + robot_speed[2] * Data_holder::get()->parameter.wheel_track * 0.0005)  * 60 * Data_holder::get()->parameter.motor_ratio / PAI \
                     / (Data_holder::get()->parameter.wheel_diameter * 0.001);
-    motor_speed[1] = (robot_speed[0] + robot_speed[2] * Data_holder::get()->parameter.wheel_track * 0.0005)  * 60 * Data_holder::get()->parameter.motor_ratio / PAI \
+    motor_speed[1] = (-robot_speed[0] + robot_speed[2] * Data_holder::get()->parameter.wheel_track * 0.0005)  * 60 * Data_holder::get()->parameter.motor_ratio / PAI \
                     / (Data_holder::get()->parameter.wheel_diameter * 0.001);
-	CanOpen_ProfileVelocity_Set(&Data_holder::get()->can_message[LeftMotor_ID -1], LeftMotor_ID, motor_speed[0]);
+    CanOpen_ProfileVelocity_Set(&Data_holder::get()->can_message[LeftMotor_ID -1], LeftMotor_ID, motor_speed[0]);
     CanOpen_ProfileVelocity_Set(&Data_holder::get()->can_message[RightMotor_ID -1], RightMotor_ID, motor_speed[1]);
+
+    last_control_time = getCurrentMicros() / 1000;
 }   
+
+void Robot::control_timeout_check() {
+    if((getCurrentMicros() / 1000 - last_control_time) > Control_Velocity_Interval) {
+        CanOpen_ProfileVelocity_Set(&Data_holder::get()->can_message[LeftMotor_ID -1], LeftMotor_ID, 0);
+        CanOpen_ProfileVelocity_Set(&Data_holder::get()->can_message[RightMotor_ID -1], RightMotor_ID, 0);   
+        HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    }
+}
 
 /**
  * @brief 
@@ -161,5 +171,5 @@ void Robot::protocol_process() {
  */
 void Robot::roserial_loop(){
     protocol_process();
-    HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
+    control_timeout_check();
 }

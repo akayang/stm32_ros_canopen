@@ -32,8 +32,8 @@ extern "C" {
 #define Motor_Port hcan
 
 /* canopen motor setting */
-#define LeftMotor_ID 1
-#define RightMotor_ID 2
+#define LeftMotor_ID 2
+#define RightMotor_ID 1
 #define Motor_SpeedRatio    166
 #define Motor_Acceleration_Speed 1000
 #define Motor_Deceleration_Speed 1000
@@ -41,6 +41,7 @@ extern "C" {
 /* robot setting */
 #define WHEEL_NUMBER 2
 #define Calculate_Odom_Interval 50
+#define Control_Velocity_Interval 100
 
 #define PAI 3.1415926535897932384626433832795
 
