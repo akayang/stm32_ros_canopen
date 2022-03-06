@@ -35,7 +35,7 @@ Data_holder::Data_holder() {
     memset(&odom, 0, sizeof(struct Robot_odom));
     memset(imu_data, 0, sizeof(imu_data));
 
-    parameter.wheel_diameter=150;
+    parameter.wheel_diameter=155;
     parameter.wheel_track=440;
     parameter.encoder_resolution=10000;
     parameter.do_pid_interval=0;

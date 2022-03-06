@@ -76,12 +76,12 @@ struct Robot_encoder{
 };
 
 struct Robot_odom{
-    int16_t v_liner_x;      //线速度 前>0 后<0  cm/s
-    int16_t v_liner_y;      //差分轮 为0        cm/s
-    int16_t v_angular_z;    //角速度 左>0 右<0  0.01rad/s   100 means 1 rad/s
-    long x;              //里程计坐标x       cm (这里long为4字节，下同)
-    long y;              //里程计坐标y       cm
-    int16_t yaw;            //里程计航角        0.01rad     100 means 1 rad
+    int16_t v_liner_x;          //线速度 前>0 后<0  cm/s
+    int16_t v_liner_y;          //差分轮 为0        cm/s
+    int16_t v_angular_z;        //角速度 左>0 右<0  0.01rad/s   100 means 1 rad/s
+    long x;                     //里程计坐标x       cm (这里long为4字节，下同)
+    long y;                     //里程计坐标y       cm
+    int16_t yaw;                //里程计航角        0.01rad     100 means 1 rad
 };
 
 enum RECEIVE_STATE{
@@ -113,11 +113,10 @@ struct Robot_Message{
 
 struct Can_Message{
     CAN_TxHeaderTypeDef TxHeader;
-    CAN_TxHeaderTypeDef RxHeader;
+    CAN_RxHeaderTypeDef RxHeader;
     uint8_t TxData[8];
     uint8_t RxData[8];
     uint32_t TxMailbox;
-    uint32_t RxMailbox;
 };
 
 class Data_holder{

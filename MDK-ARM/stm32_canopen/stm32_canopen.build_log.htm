@@ -5,10 +5,10 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ��Vision V5.35.0.0
 Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: D D, D, LIC=----
+License Information: D D, D, LIC=PE7DL-0QFVX-X7VRZ-J2M5N-LT25E-I13H7
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.35.0.2
+Toolchain:       MDK-ARM Plus  Version: 5.35.0.2
 Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 7 (build 960)
 Assembler:       Armasm.exe V5.06 update 7 (build 960)
@@ -21,17 +21,34 @@ Target DLL:      CMSIS_AGDI.dll V1.33.0.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-H:\stm32\stm32_canopen\MDK-ARM\stm32_canopen.uvprojx
+F:\stm32\stm32_canopen\MDK-ARM\stm32_canopen.uvprojx
 Project File Date:  03/05/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'stm32_canopen'
+compiling main.cpp...
+compiling can.c...
+compiling gpio.c...
+compiling dma.c...
+compiling stm32f1xx_it.c...
+compiling usart.c...
+compiling data_holder.cpp...
+compiling stm32f1xx_hal_msp.c...
+compiling data_process.cpp...
+compiling flash.cpp...
+..\lib\flash.cpp(26): warning:  #177-D: variable "PageError"  was declared but never referenced
+      uint32_t PageError = 0;                         //设置PageError,如果出现错误这个变量会被设置为出错的FLASH地址	
+..\lib\flash.cpp(27): warning:  #550-D: variable "My_Flash"  was set but never used
+      FLASH_EraseInitTypeDef My_Flash;                //声明 FLASH_EraseInitTypeDef 结构体为 My_Flash
+..\lib\flash.cpp: 2 warnings, 0 errors
+compiling timer.cpp...
+compiling robot.cpp...
 compiling canopen_process.cpp...
 linking...
-Program Size: Code=16928 RO-data=316 RW-data=32 ZI-data=2664  
+Program Size: Code=22434 RO-data=350 RW-data=48 ZI-data=2688  
 FromELF: creating hex file...
-"stm32_canopen\stm32_canopen.axf" - 0 Error(s), 0 Warning(s).
+"stm32_canopen\stm32_canopen.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -55,7 +72,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:20
 </pre>
 </body>
 </html>

@@ -24,7 +24,15 @@ extern "C" {
 /*****************************************************************************
  *	Object dictionary operation type definition
  *****************************************************************************/
-#define CANOPEN_SDO_MASTER                          0x600
+#define CANOPEN_SDO_REQUEST                         0x600
+#define CANOPEN_SDO_RESPONSE                        0x580
+#define CANOPEN_TXPDO1                              0x180
+#define CANOPEN_TXPDO2                              0x280
+#define CANOPEN_TXPDO3                              0x380
+#define CANOPEN_TXPDO4                              0x480
+
+#define NMT_ENABLE                                  0x01
+#define NMT_DISABLE                                 0x00
 
 #define CANOPEN_WRITE_DATA_T_INTEGER32              0x23
 #define CANOPEN_WRITE_DATA_T_UNSIGNED32             0x23

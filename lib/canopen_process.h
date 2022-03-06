@@ -23,6 +23,8 @@ extern "C" {
 #include "canopen_objdic.h"
 
 static uint8_t CanOpen_OperationBit_Set(STRUCT_OBEJECT struct_obeject);
+void CAN_Filter_Init(CAN_HandleTypeDef* canHandle);
+void CanOpen_NMT_Set(struct Can_Message * can_message, uint8_t Motor_ID, uint8_t value);
 void CanOpen_ProcotolMode_Set(struct Can_Message * can_message, uint8_t Motor_ID);
 void CanOpen_OperationMode_Set(struct Can_Message * can_message, uint8_t Motor_ID);
 void CanOpen_AccelerationSpeed_Set(struct Can_Message * can_message, uint8_t Motor_ID, uint32_t value);

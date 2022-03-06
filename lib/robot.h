@@ -22,6 +22,15 @@ extern "C" {
 
 #include "main.h"
 
+struct Odom{
+    float x;
+    float y;
+    float z;
+    float vel_x;
+    float vel_y;
+    float vel_z;
+};
+
 class Robot{
     public:
         static Robot* get(){
@@ -40,7 +49,9 @@ class Robot{
         void calc_odom();
         void update_velocity();
         void control_timeout_check();
+        void get_odom(struct Odom* odom, float* motor_dis, unsigned long interval);
     private:
+//        Odom    odom;
         uint32_t last_control_time;
         uint32_t last_odom_time;
 };

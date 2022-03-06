@@ -30,10 +30,11 @@ extern "C" {
 #define Transfer_Port_Instance USART3
 #define Transfer_Hdma hdma_usart3_rx
 #define Motor_Port hcan
-
+#define Motor_Port_Instance CAN1
 /* canopen motor setting */
-#define LeftMotor_ID 2
-#define RightMotor_ID 1
+#define ENABLE_TXPDO1   //POSITION_ACTUAL_VALUE(0x6064) for 4 LSB, VELOCITY_ACTUAL_VALUE(0x606C) for 4 MSB, set with NiMotion APP to servo driver eeprom
+#define LeftMotor_ID 1
+#define RightMotor_ID 2
 #define Motor_SpeedRatio    166
 #define Motor_Acceleration_Speed 1000
 #define Motor_Deceleration_Speed 1000
@@ -41,7 +42,7 @@ extern "C" {
 /* robot setting */
 #define WHEEL_NUMBER 2
 #define Calculate_Odom_Interval 50
-#define Control_Velocity_Interval 100
+#define Control_Velocity_Interval 150
 
 #define PAI 3.1415926535897932384626433832795
 
