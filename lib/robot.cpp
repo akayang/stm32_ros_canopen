@@ -159,7 +159,7 @@ void Robot::calc_odom() {
         Data_holder::get()->odom.v_angular_z = odom.vel_z;
         Data_holder::get()->odom.x = odom.x;
         Data_holder::get()->odom.y = odom.y;
-        Data_holder::get()->odom.yaw = odom.z;    
+        Data_holder::get()->odom.yaw = odom.z * 100;    
         /* 保存编码器数据 */
         Data_holder::get()->encoder.last_value[LeftMotor_ID-1] = Data_holder::get()->encoder.now_value[LeftMotor_ID-1];
         Data_holder::get()->encoder.last_value[RightMotor_ID-1] = Data_holder::get()->encoder.now_value[RightMotor_ID-1];
